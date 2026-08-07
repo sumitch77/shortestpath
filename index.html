@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India Route Finder</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="logo">🗺️</div>
+      <div>
+        <h1>India Route Finder</h1>
+        <p class="subtitle">Shortest path using Haversine distance &amp; Dijkstra's algorithm</p>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel form-panel">
+        <h2>Plan Your Route</h2>
+
+        <form id="route-form">
+          <div class="field">
+            <label for="source">Source</label>
+            <select id="source" name="source" required>
+              <option value="">Select a city</option>
+              {% for city in cities %}
+              <option value="{{ city }}">{{ city }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="swap-row">
+            <button type="button" id="swap-btn" title="Swap cities">⇅</button>
+          </div>
+
+          <div class="field">
+            <label for="destination">Destination</label>
+            <select id="destination" name="destination" required>
+              <option value="">Select a city</option>
+              {% for city in cities %}
+              <option value="{{ city }}">{{ city }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <button type="submit" class="btn-primary">Find Shortest Route</button>
+        </form>
+
+        <div id="error" class="error hidden"></div>
+      </section>
+
+      <section class="panel result-panel hidden" id="result-panel">
+        <h2>Shortest Route</h2>
+        <div id="route-visual" class="route-visual"></div>
+        <div class="distance-box">
+          <span class="distance-label">Total Distance</span>
+          <span id="distance" class="distance-value"></span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>10 cities · 11 road connections</p>
+    </footer>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
